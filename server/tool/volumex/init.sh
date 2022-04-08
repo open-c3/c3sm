@@ -1,6 +1,6 @@
 #!/bin/bash
 ip1=$1
-ip2=$1
+ip2=$2
 if [[ "X$ip1" = "X" || "X$ip2" = "X" ]];then
     echo $0 nodeip1 nodeip2
     exit
