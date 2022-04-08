@@ -1,0 +1,6 @@
+*.swp
+.DS_Store
+*.old
+server/etc/
+server/var/
+server/data/
