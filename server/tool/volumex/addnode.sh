@@ -1,0 +1,8 @@
+#!/bin/bash
+ip1=$1
+ip2=$1
+if [[ "X$ip1" = "X" || "X$ip2" = "X" ]];then
+    echo $0 nodeip1 nodeip2
+    exit
+fi
+docker exec -it openc3-c3sm gluster volume add-brick c3sm_replica $ip1:/data/c3sm/server/data/c3sm_replica $ip2:/data/c3sm/server/data/c3sm_replica
