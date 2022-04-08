@@ -6,4 +6,4 @@ if [[ "X$ip1" = "X" || "X$ip2" = "X" ]];then
     exit
 fi
 
-docker exec -it openc3-c3sm gluster volume create c3sm_replica transport replica 2 tcp $ip1:/data/c3sm/server/data/c3sm_replica $ip2:/data/c3sm/server/data/c3sm_replica force
+docker exec -it openc3-c3sm gluster volume create c3sm_replica replica 2 transport tcp $ip1:/data/c3sm/server/data/c3sm_replica $ip2:/data/c3sm/server/data/c3sm_replica force
