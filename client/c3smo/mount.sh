@@ -5,4 +5,5 @@ if [ "X$ip" = "X" ];then
     exit;
 fi
 test -d /c3smo || mkdir /c3smo
+umount /c3smo
 mount -t glusterfs $ip:/c3smo /c3smo
