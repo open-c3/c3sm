@@ -8,7 +8,7 @@ if [[ "X$ip1" = "X" || "X$ip2" = "X" || "X$ip3" = "X" || "X$ip4" = "X" ]];then
     exit
 fi
 
-docker exec -it openc3-c3sm gluster volume create c3smo disperse 4 transport tcp \
+docker exec -i openc3-c3sm gluster volume create c3smo disperse 4 transport tcp \
     $ip1:/data/c3smo \
     $ip2:/data/c3smo \
     $ip3:/data/c3smo \

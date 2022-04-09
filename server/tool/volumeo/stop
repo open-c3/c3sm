@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it openc3-c3sm gluster volume stop c3smo
+docker exec -i openc3-c3sm gluster volume stop c3smo
