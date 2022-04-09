@@ -1,0 +1,7 @@
+#!/bin/bash
+
+nodes=$(cat /data/c3sm/control/node.list |/opt/mydan/dan/tools/range)
+
+/opt/mydan/dan/tools/rcall -r $nodes exec 'cd /data/c3sm && git pull'
+/opt/mydan/dan/tools/rcall -r $nodes exec '/data/c3sm/server/tool/Clean'
+/opt/mydan/dan/tools/rcall -r $nodes exec '/data/c3sm/server/tool/docker/run'
