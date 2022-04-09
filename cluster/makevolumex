@@ -1,0 +1,10 @@
+#!/bin/bash
+
+master=$(head -n 1 /data/c3sm/cluster/node.list);
+
+init=$(cat /data/c3sm/cluster/node.list|head -n 2|xargs -n 2)
+/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumex/init $init"
+
+cat /data/c3sm/cluster/node.list | sed 1,2d|xargs  -n 2|xargs -i{} /opt/mydan/dan/tools/rcall -r $master exec '/data/c3sm/server/tool/volumex/addnode {}'
+/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumex/start"
+/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumex/status"

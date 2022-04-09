@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /data/c3sm/cluster || exit
+
+./Reinstall
+./addnode
+./nodestatus
