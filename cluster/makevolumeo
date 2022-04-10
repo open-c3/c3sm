@@ -8,4 +8,5 @@ nodec=$(cat /data/c3sm/cluster/node.list|wc -l)
 /opt/mydan/dan/tools/rcall -r $master exec "echo y|docker exec -i openc3-c3sm gluster volume create c3smo disperse $nodec redundancy 1 transport tcp $nodes force"
 
 /opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumeo/start"
+/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumeo/performance"
 /opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volumeo/status"
