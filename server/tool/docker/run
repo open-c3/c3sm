@@ -9,4 +9,5 @@ docker run \
     --net=host \
     -v /dev/:/dev \
     --name openc3-c3sm \
+    --restart always \
     gluster/gluster-centos
