@@ -2,4 +2,4 @@
 
 master=$(head -n 1 /data/c3sm/cluster/node.list);
 
-cat /data/c3sm/cluster/node.list | sed 1d |xargs -i{} /opt/mydan/dan/tools/rcall -r $master exec '/data/c3sm/server/tool/node/add {}'
+cat /data/c3sm/cluster/node.list | sed 1d |xargs -i{} mydan rcall -r $master exec '/data/c3sm/server/tool/node/add {}'

@@ -5,11 +5,11 @@ nodes=$(cat /data/c3sm/cluster/node.list |/opt/mydan/dan/tools/range)
 echo After 60 seconds, delete the data and reinstall the cluster
 sleep 60
 
-/opt/mydan/dan/tools/rcall -r $nodes exec 'cd /data/c3sm && git pull'
-/opt/mydan/dan/tools/rcall -r $nodes exec '/data/c3sm/server/tool/Clean'
+mydan rcall -r $nodes exec 'cd /data/c3sm && git pull'
+mydan rcall -r $nodes exec '/data/c3sm/server/tool/Clean'
 
 echo Wait for all services to shut down and sleep for 60 seconds
 sleep 60
 
-/opt/mydan/dan/tools/rcall -r $nodes exec '/data/c3sm/server/tool/docker/run'
-/opt/mydan/dan/tools/rcall -r $nodes exec 'systemctl enable docker'
+mydan rcall -r $nodes exec '/data/c3sm/server/tool/docker/run'
+mydan rcall -r $nodes exec 'systemctl enable docker'

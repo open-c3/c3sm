@@ -1,4 +1,4 @@
 #!/bin/bash
 
 nodes=$(cat /data/c3sm/cluster/node.list |/opt/mydan/dan/tools/range)
-/opt/mydan/dan/tools/rcall -r $nodes exec '/data/c3sm/server/tool/node/status'
+mydan rcall -r $nodes exec '/data/c3sm/server/tool/node/status'

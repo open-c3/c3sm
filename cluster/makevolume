@@ -2,8 +2,8 @@
 
 master=$(head -n 1 /data/c3sm/cluster/node.list);
 
-/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volume/init $master"
-cat /data/c3sm/cluster/node.list | sed 1d |xargs -i{} /opt/mydan/dan/tools/rcall -r $master exec '/data/c3sm/server/tool/volume/addnode {}'
-/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volume/start"
-/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volume/performance"
-/opt/mydan/dan/tools/rcall -r $master exec "/data/c3sm/server/tool/volume/status"
+mydan rcall -r $master exec "/data/c3sm/server/tool/volume/init $master"
+cat /data/c3sm/cluster/node.list | sed 1d |xargs -i{} mydan rcall -r $master exec '/data/c3sm/server/tool/volume/addnode {}'
+mydan rcall -r $master exec "/data/c3sm/server/tool/volume/start"
+mydan rcall -r $master exec "/data/c3sm/server/tool/volume/performance"
+mydan rcall -r $master exec "/data/c3sm/server/tool/volume/status"
