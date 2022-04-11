@@ -8,20 +8,20 @@ function ddtest
     echo test $name
     rm /$name/dd.test* 2>/dev/null
 
-    echo test w
+    echo test $name write
     seq 1 $count| xargs -i{} bash -c "dd if=/dev/urandom of=/$name/dd.test.{} bs=1M count=1000 2>&1"|grep copied
 
     sleep 120;
 
-    echo test r
+    echo test $name read
     seq 1 $count| xargs -i{} bash -c "dd of=/dev/null if=/$name/dd.test.{} bs=1M 2>&1"|grep copied
 
     sleep 120;
 
-    echo test rw
-    seq 1 $count| xargs -i{} bash -c "dd if=/c3sm/dd.test.{} of=/$name/dd.test.{}.w bs=1M count=1000 2>&1"|grep copied
+    echo test $name write and read
+    seq 1 $count| xargs -i{} bash -c "dd if=/$name/dd.test.{} of=/$name/dd.test.{}.w bs=1M count=1000 2>&1"|grep copied
 
-    rm /c3sm/dd.test*
+    rm /$name/dd.test* 2>/dev/null
     echo done
 }
 
