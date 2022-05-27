@@ -41,7 +41,7 @@ open-c3需要对文件进行共享和数据库备份时需要一个高可用的�
 ### 客户端
 ```
 1. 在需要使用存在的机器上下载本项目代码到/data/c3sm
-2. 安装gluster文件系统的支持 /data/c3sm/client/c3sm/install.sh 
+2. 安装gluster文件系统的支持 /data/c3sm/client/Install
 3. 挂载普通卷 /data/c3sm/client/c3sm/mount.sh serverip
      挂载点 /c3sm
 4. 挂载复制卷 /data/c3sm/client/c3smx/mount.sh serverip
