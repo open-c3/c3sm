@@ -1,0 +1,47 @@
+#!/opt/mydan/perl/bin/perl
+use strict;
+use warnings;
+
+use YAML::XS;
+
+use MYDan::Util::OptConf;
+
+=head1 SYNOPSIS
+
+ $0 [--config file]
+ 
+=cut
+
+my $option = MYDan::Util::OptConf->load();
+my %o = $option->get( qw( config=s ) )->dump();
+$option->assert(qw( config ));
+
+my $config = eval{ YAML::XS::LoadFile $o{config} };
+die "load config fail: $@" if $@;
+
+my @key = qw(
+    NODE.UUID
+    NODE.operating-version
+    NODE.alive
+);
+
+map{ die "keys $_ undef" unless $config->{$_} }@key;
+
+for my $name ( qw( c3sm c3smo c3smx ) )
+{
+    next unless $config->{"$name.trusted.glusterfs.volume-id"};
+    die "fail" if system "mkdir -p /data/c3sm/server/data/$name && cd /data/c3sm/server/data/$name && mkdir -p .glusterfs/indices&& chmod 777 .glusterfs";
+    die "fail" if system sprintf "cd /data/c3sm/server/data && setfattr -n trusted.glusterfs.volume-id -v %s $name", $config->{"$name.trusted.glusterfs.volume-id"};
+}
+
+system "/data/c3sm/server/tool/docker/stop";
+system "rm -rf /data/c3sm/server/var/lib/glusterd";
+system "mkdir -p /data/c3sm/server/var/lib/glusterd";
+
+system "echo UUID=$config->{'NODE.UUID'}                           >  /data/c3sm/server/var/lib/glusterd/glusterd.info";
+system "echo operating-version=$config->{'NODE.operating-version'} >> /data/c3sm/server/var/lib/glusterd/glusterd.info";
+
+system "/data/c3sm/server/tool/docker/start";
+system "/data/c3sm/server/tool/node/add $config->{'NODE.alive'}";
+
+system "/data/c3sm/server/tool/docker/restart";

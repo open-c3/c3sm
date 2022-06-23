@@ -1,0 +1,14 @@
+#要恢复的节点的uuid, 可以在集群中存活的节点上查看,执行/data/c3sm/server/tool/node/status 
+NODE.UUID: 607b0eae-9445-4d2d-a10d-943bd9a67110
+#要恢复的节点服务启动起来后,在/data/c3sm/server/var/lib/glusterd/glusterd.info文件中获取
+NODE.operating-version: 70000
+#集群中随便一台活的节点
+NODE.alive: '10.10.10.1'
+
+#三个卷的id,在好的节点上执行getfattr命令获取, 不需要恢复的卷可以不写配置
+#getfattr -d -m. -e hex /data/c3sm/server/data/c3sm|grep volume-id
+c3sm.trusted.glusterfs.volume-id:  '0x74fc70830ab5416d9c394bbd3d3de111'
+#getfattr -d -m. -e hex /data/c3sm/server/data/c3smo|grep volume-id
+c3smo.trusted.glusterfs.volume-id: '0x74fc70830ab5416d9c394bbd3d3de112'
+#getfattr -d -m. -e hex /data/c3sm/server/data/c3smx|grep volume-id
+c3smx.trusted.glusterfs.volume-id: '0x74fc70830ab5416d9c394bbd3d3de113'
