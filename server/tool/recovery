@@ -42,6 +42,8 @@ system "echo UUID=$config->{'NODE.UUID'}                           >  /data/c3sm
 system "echo operating-version=$config->{'NODE.operating-version'} >> /data/c3sm/server/var/lib/glusterd/glusterd.info";
 
 system "/data/c3sm/server/tool/docker/start";
+
+sleep 45;
 system "/data/c3sm/server/tool/node/add $config->{'NODE.alive'}";
 
 system "/data/c3sm/server/tool/docker/restart";
