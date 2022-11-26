@@ -1,0 +1,7 @@
+#!/bin/bash
+ip=$1
+if [ "X$ip" = "X" ];then
+    echo $0 nodeip
+    exit
+fi
+docker exec -i openc3-c3sm gluster volume remove-brick c3sm $ip:/data/c3sm start force
