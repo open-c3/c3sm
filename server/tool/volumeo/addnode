@@ -11,4 +11,4 @@ docker exec -i openc3-c3sm gluster volume add-brick c3smo \
     $ip1:/data/c3smo \
     $ip2:/data/c3smo \
     $ip3:/data/c3smo \
-    $ip4:/data/c3smo
+    $ip4:/data/c3smo force
